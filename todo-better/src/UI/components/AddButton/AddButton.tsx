@@ -1,15 +1,15 @@
 import { ChangeEvent, FC, useContext, useState } from 'react';
 
-import { ApiContext } from '../../contexts/ApiContext';
+import { TodoService } from '../../../Services/TodoService';
 
 interface IProps {
     getData: () => void;
 }
 
 const AddButton: FC<IProps> = ({ getData }) => {
+    const todoService = new TodoService();
     const [open, setOpen] = useState(false);
     const [value, setValue] = useState('');
-    const { addTodoItem } = useContext(ApiContext);
 
     const add = () => {
         setOpen(true);
@@ -20,7 +20,7 @@ const AddButton: FC<IProps> = ({ getData }) => {
     };
 
     const accept = async () => {
-        await addTodoItem(value);
+        await todoService.addTodoItem(value);
 
         getData();
         setValue('');

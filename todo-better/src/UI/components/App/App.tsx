@@ -1,25 +1,19 @@
 import './App.css';
 
-import React, { FC, useCallback, useContext, useEffect, useState } from 'react';
+import React, { FC, useCallback, useEffect, useState } from 'react';
 
 import AddButton from '../AddButton/AddButton';
-import { ApiContext } from '../../contexts/ApiContext';
 import { ITodo } from '../../interfaces/todo';
 import TodoItem from '../TodoItem/TodoItem';
+import { TodoService } from '../../../Services/TodoService';
 
 const App: FC = () => {
+    const todoService = new TodoService();
     const [gotData, setGotData] = useState<boolean>(false);
     const [items, setItems] = useState<ITodo[] | undefined>(undefined);
-    const { getTodoData } = useContext(ApiContext);
-
-    const itemSort = (a: ITodo, b: ITodo) => {
-        return a.id < b.id ? 1 : b.id < a.id ? -1 : 0;
-    };
 
     const getData = useCallback(async () => {
-        const data = await getTodoData();
-
-        data?.sort(itemSort);
+        const data = await todoService.getTodoData();
 
         setItems(data);
     }, []);
