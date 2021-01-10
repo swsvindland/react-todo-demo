@@ -1,0 +1,25 @@
+.App {
+    text-align: center;
+}
+
+.App-header {
+    padding: 0 20px;
+    background-color: #333;
+    border-bottom: 1px solid black;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+}
+
+.App-main {
+    background-color: #333;
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(auto-fit, 300px);
+    grid-row-gap: 10px;
+    grid-column-gap: 10px;
+    justify-content: center;
+    padding: 1rem 0;
+}
